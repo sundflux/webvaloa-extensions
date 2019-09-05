@@ -36,6 +36,7 @@ use Libvaloa\Db;
 use Libvaloa\Debug\Debug;
 use Webvaloa\Filesystem;
 use Webvaloa\Path;
+use Webvaloa\Role;
 use Libvaloa\Model\Table;
 use RuntimeException;
 
@@ -237,9 +238,9 @@ class Component
     /**
      * Adds role to component.
      *
-     * @param type $roleID
-     *
-     * @return int roleid
+     * @param $roleID
+     * @return bool|int
+     * @throws Db\DBException
      */
     public function addRole($roleID)
     {
@@ -311,9 +312,8 @@ class Component
     }
 
     /**
-     * Install a component.
-     *
-     * @return int ComponentID
+     * @return bool|int
+     * @throws Db\DBException
      */
     public function install()
     {
@@ -338,6 +338,22 @@ class Component
         $object->system_component = 0;
         $object->blocked = 0;
         $this->id = $object->save();
+
+        // Add roles
+        $role = new Role();
+        $roles = $manifest->roles;
+        if (!empty($roles)) {
+            foreach ($roles as $roleName) {
+                $roleId = $role->getRoleID($roleName);
+
+                // Add role if it doesn't exist
+                if (!$roleId) {
+                    $roleId = $role->addRole($roleName);
+                }
+
+                $this->addRole($roleId);
+            }
+        }
 
         return $this->id;
     }
