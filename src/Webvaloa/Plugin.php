@@ -143,6 +143,8 @@ class Plugin
         try {
             $this->db = \Webvaloa\Webvaloa::DBConnection();
         } catch (\Libvaloa\Db\DBException $e) {
+            // If DB fails here, we're likely on cli or setup has not been
+            // run yet, so DB connection is not available.
         }
     }
 
