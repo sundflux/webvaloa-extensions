@@ -326,12 +326,6 @@ class Component
             return true;
         }
 
-        // Install database
-        $this->installModels();
-
-        // Install configuration
-        $this->installConfiguration();
-
         // Install component
         $object = new Db\Item($db, 'component');
         $object->controller = $this->controller;
@@ -366,7 +360,7 @@ class Component
         if (!empty($models)) {
             foreach ($models as $model) {
                 $table = new Table($model);
-                $table->create();
+                $table->create(\Webvaloa\Webvaloa::DBConnection());
             }
         }
     }
