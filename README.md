@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.3] - 2019-09-06
+- Fix Exception catch.
+
 ### [3.0.2] - 2019-09-06
 - Don't automatically run installModels() inside install().
 - Add missing db connection to Table model create().

@@ -142,7 +142,7 @@ class Plugin
 
         try {
             $this->db = \Webvaloa\Webvaloa::DBConnection();
-        } catch (Exception $e) {
+        } catch (\Libvaloa\Db\DBException $e) {
         }
     }
 
