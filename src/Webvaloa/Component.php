@@ -336,6 +336,17 @@ class Component
         $object->blocked = 0;
         $this->id = $object->save();
 
+        return $this->id;
+    }
+
+    /**
+     * @throws Db\DBException
+     */
+    public function installRoles()
+    {
+        // Read component manifest
+        $manifest = new Manifest($this->controller);
+
         // Add roles
         $role = new Role();
         $roles = $manifest->roles;
@@ -351,8 +362,6 @@ class Component
                 $this->addRole($roleId);
             }
         }
-
-        return $this->id;
     }
 
     public function installModels()
