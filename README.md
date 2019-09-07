@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.4] - 2019-09-07
+- Write versioning to component table.
+
 ### [3.0.3] - 2019-09-06
 - Fix Exception catch.
 

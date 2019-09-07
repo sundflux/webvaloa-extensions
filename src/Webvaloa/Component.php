@@ -329,6 +329,9 @@ class Component
         // Install component
         $object = new Db\Item($db, 'component');
         $object->controller = $this->controller;
+        if ($manifest->version != '') {
+            $object->version = trim($manifest->version);
+        }
         $object->system_component = 0;
         $object->blocked = 0;
         $this->id = $object->save();
