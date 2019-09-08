@@ -40,6 +40,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 Changes are grouped by added, fixed or changed feature.
 
+### [3.0.6] - 2019-09-08
+- Always write component version to component table when installing component.
+
 ### [3.0.5] - 2019-09-08
 - Separate role creation to installRoles()
 
