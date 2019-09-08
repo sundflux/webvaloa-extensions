@@ -260,7 +260,7 @@ class Component
         $db = \Webvaloa\Webvaloa::DBConnection();
 
         // Insert role object
-        $object = new Db\Item('component_role', $db);
+        $object = new Db\Item($db, 'component_role');
         $object->component_id = $this->id;
         $object->role_id = $roleID;
 
@@ -329,9 +329,10 @@ class Component
         // Install component
         $object = new Db\Item($db, 'component');
         $object->controller = $this->controller;
-        $object->version = $manifest->version;
+        $object->installed_version = $manifest->version;
         $object->system_component = 0;
         $object->blocked = 0;
+
         $this->id = $object->save();
 
         return $this->id;
